@@ -22,12 +22,14 @@ namespace RandomGrouping
         /// <summary>
         /// 座號列表
         /// </summary>
-        CheckBox[] SeatList = new CheckBox[30];
+        CheckBox[] SeatList ;
         /// <summary>
         /// 初始化列表
         /// </summary>
         void InitPanel()
         {
+            SeatList = new CheckBox[CurrentSettings.IsSeatClick.Length];
+
             for (int a = 0; a < SeatList.Length; a++)
             {
                 SeatList[a] = new CheckBox()
@@ -42,8 +44,6 @@ namespace RandomGrouping
                 SeatList[a].CheckedChanged += (sender, e) =>
                 {
                     CurrentSettings.IsSeatClick[SeatID] = SeatList[SeatID].Checked;
-
-                    SaveSettings();
                 };
 
                 SeatsLayoutPanel.Controls.Add(SeatList[a]);
@@ -57,7 +57,7 @@ namespace RandomGrouping
         /// <summary>
         /// 
         /// </summary>
-        const string SettingsFileName = "Settings.text";
+        const string SettingsFileName = "Settings";
         /// <summary>
         /// 
         /// </summary>
@@ -68,12 +68,6 @@ namespace RandomGrouping
                 try
                 {
                     CurrentSettings = JsonSerializer.Deserialize<Settings>(File.ReadAllText(SettingsFileName));
-
-                    SeatList = new CheckBox[CurrentSettings.IsSeatClick.Length];
-                    for (int a = 0; a < CurrentSettings.IsSeatClick.Length; a++)
-                    {
-                        SeatList[a].Checked = CurrentSettings.IsSeatClick[a];
-                    }
 
                     return;
                 }
@@ -88,7 +82,10 @@ namespace RandomGrouping
             {
                 IsSeatClick = Enumerable.Repeat(true, 30).ToArray()
             };
+
+
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -96,11 +93,31 @@ namespace RandomGrouping
         {
             var Json = JsonSerializer.Serialize(CurrentSettings);
             Debug.WriteLine(Json);
+
+            try
+            {
+                File.WriteAllText(SettingsFileName, Json);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"儲存設定檔失敗: {ex.Message}");
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// 視窗關閉前事件
+        /// </summary>
+        /// <param name="S"></param>
+        /// <param name="E"></param>
+        void OnFormClosing(object S, FormClosingEventArgs E)
+        {
+            //儲存設定檔
+            SaveSettings();
         }
 
         /// <summary>

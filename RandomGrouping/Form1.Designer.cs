@@ -51,6 +51,7 @@
             Name = "MainForm";
             Text = "值日生隨機分組";
             Load += Form1_Load;
+            FormClosing += OnFormClosing;
             ResumeLayout(false);
         }
 
