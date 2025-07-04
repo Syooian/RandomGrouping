@@ -47,17 +47,18 @@
             // 
             // OutputTextBox
             // 
-            OutputTextBox.Location = new Point(697, 12);
+            OutputTextBox.Location = new Point(652, 12);
             OutputTextBox.Multiline = true;
             OutputTextBox.Name = "OutputTextBox";
             OutputTextBox.ReadOnly = true;
-            OutputTextBox.Size = new Size(215, 360);
+            OutputTextBox.ScrollBars = ScrollBars.Vertical;
+            OutputTextBox.Size = new Size(260, 360);
             OutputTextBox.TabIndex = 3;
             OutputTextBox.WordWrap = false;
             // 
             // InputGroupCount
             // 
-            InputGroupCount.Location = new Point(591, 12);
+            InputGroupCount.Location = new Point(546, 12);
             InputGroupCount.Name = "InputGroupCount";
             InputGroupCount.Size = new Size(100, 38);
             InputGroupCount.TabIndex = 4;
@@ -65,7 +66,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(452, 15);
+            label1.Location = new Point(407, 15);
             label1.Name = "label1";
             label1.Size = new Size(133, 30);
             label1.TabIndex = 5;
@@ -73,7 +74,7 @@
             // 
             // Btn_Pick
             // 
-            Btn_Pick.Location = new Point(275, 7);
+            Btn_Pick.Location = new Point(251, 7);
             Btn_Pick.Name = "Btn_Pick";
             Btn_Pick.Size = new Size(150, 46);
             Btn_Pick.TabIndex = 6;
