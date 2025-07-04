@@ -16,13 +16,13 @@ namespace RandomGrouping
 
             InitPanel();
 
-
+            InitSettings();
         }
 
         /// <summary>
         /// 座號列表
         /// </summary>
-        CheckBox[] SeatList ;
+        CheckBox[] SeatList;
         /// <summary>
         /// 初始化列表
         /// </summary>
@@ -37,7 +37,7 @@ namespace RandomGrouping
                     Text = (a + 1).ToString(),
                     Size = new Size(170, 35),
                     BackColor = Color.FromArgb(255, 255, 190),
-                    Checked= CurrentSettings.IsSeatClick[a]
+                    Checked = CurrentSettings.IsSeatClick[a]
                 };
 
                 var SeatID = a;
@@ -48,6 +48,20 @@ namespace RandomGrouping
 
                 SeatsLayoutPanel.Controls.Add(SeatList[a]);
             }
+        }
+
+        /// <summary>
+        /// 初始化畫面數值
+        /// </summary>
+        void InitSettings()
+        {
+            InputGroupCount.Text = CurrentSettings.GroupCount.ToString();
+            InputGroupCount.TextChanged += (Sender, E) =>
+            {
+                CurrentSettings.GroupCount = int.Parse(InputGroupCount.Text);
+
+                Debug.WriteLine($"抽出組數: {CurrentSettings.GroupCount}");
+            };
         }
 
         /// <summary>
@@ -80,10 +94,9 @@ namespace RandomGrouping
             //沒有設定檔，或是設定檔讀取錯誤時，使用預設設定
             CurrentSettings = new Settings
             {
-                IsSeatClick = Enumerable.Repeat(true, 30).ToArray()
+                IsSeatClick = Enumerable.Repeat(true, 30).ToArray(),
+                GroupCount = 20
             };
-
-
         }
 
         /// <summary>
@@ -129,43 +142,73 @@ namespace RandomGrouping
             /// 座號是否勾選
             /// </summary>
             public bool[] IsSeatClick { get; set; }
+
+            /// <summary>
+            /// 抽出組數
+            /// </summary>
+            public int GroupCount { get; set; }
         }
 
-        //    function shuffleAndGroup()
-        //    {
-        //        // 定義數字範圍
-        //        let numbers = [];
-        //        for (let i = 1; i <= 15; i++)
-        //        {
-        //            numbers.push(i);
-        //        }
-        //        numbers.push(17);
-        //        for (let i = 19; i <= 30; i++)
-        //        {
-        //            numbers.push(i);
-        //        }
+        /// <summary>
+        /// 抽出號碼
+        /// </summary>
+        /// <param name="S"></param>
+        /// <param name="E"></param>
+        void Picking(object S, EventArgs E)
+        {
+            var GetList = GetGroupList();
 
-        //        // 隨機打散數字
-        //        numbers = numbers.sort(() => Math.random() - 0.5);
+            OutputTextBox.Text = "";
+            for (int a = 0; a < GetList.Length; a++)
+            {
+                OutputTextBox.Text += $"第 {a + 1} 組：{GetList[a]}\r\n";
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        string[] GetGroupList()
+        {
+            var GetSeatList = new List<string>();
+            for (int a = 0; a < SeatList.Length; a++)
+            {
+                if (SeatList[a].Checked)
+                {
+                    GetSeatList.Add(SeatList[a].Text);
+                }
+            }
 
-        //        // 分組
-        //        let groups = [];
-        //        for (let i = 0; i < numbers.length; i += 2)
-        //        {
-        //            let group = numbers.slice(i, i + 2);
-        //            groups.push(group);
-        //        }
+            var Random = new Random();
+            var RandomIndex = 0;
 
-        //        // 顯示結果
-        //        document.body.innerHTML += "<h3>隨機分組結果：</h3>";
-        //        groups.forEach((group, index) => {
-        //            document.body.innerHTML += `第 ${ index + 1}
-        //        組: ${ group.join(", ")}< br >`;
-        //        });
-        //    }
+            var Groups = new List<string>();
+            for (int a = 0; a < int.Parse(InputGroupCount.Text); a++)
+            {
+                if (GetSeatList.Count < 2)
+                {
+                    Debug.WriteLine("剩餘組數不足");
+                    break;
+                }
 
-        //    // 執行函式
-        //    shuffleAndGroup();
+                //取兩個號碼
+                for (int b = 0; b < 2; b++)
+                {
+                    RandomIndex = Random.Next(GetSeatList.Count);
 
+                    var GetSeat = GetSeatList[RandomIndex];
+
+                    if (Groups.Count() == a)
+                        Groups.Add(GetSeat);
+                    else
+                        Groups[a] += ", " + GetSeat;
+
+                    GetSeatList.RemoveAt(RandomIndex);
+                }
+
+                Debug.WriteLine($"第 {a + 1} 組：{Groups[a]}");
+            }
+
+            return Groups.ToArray();
+        }
     }
 }
