@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36221.1 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomGrouping", "RandomGrouping\RandomGrouping.csproj", "{0555DF42-66B8-41E1-90D6-3E1E114E8306}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0555DF42-66B8-41E1-90D6-3E1E114E8306}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0555DF42-66B8-41E1-90D6-3E1E114E8306}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0555DF42-66B8-41E1-90D6-3E1E114E8306}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0555DF42-66B8-41E1-90D6-3E1E114E8306}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54DF1614-0D2A-44DA-BDA9-591E59FB2C9B}
+	EndGlobalSection
+EndGlobal
