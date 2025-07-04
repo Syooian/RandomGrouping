@@ -59,6 +59,7 @@
             // InputGroupCount
             // 
             InputGroupCount.Location = new Point(546, 12);
+            InputGroupCount.MaxLength = 2;
             InputGroupCount.Name = "InputGroupCount";
             InputGroupCount.Size = new Size(100, 38);
             InputGroupCount.TabIndex = 4;
