@@ -58,7 +58,16 @@ namespace RandomGrouping
             InputGroupCount.Text = CurrentSettings.GroupCount.ToString();
             InputGroupCount.TextChanged += (Sender, E) =>
             {
-                CurrentSettings.GroupCount = int.Parse(InputGroupCount.Text);
+                //Debug.WriteLine($"Input A : {Sender.}, {E}");
+
+                if (int.TryParse(InputGroupCount.Text, out int GetNumber))
+                {
+                    CurrentSettings.GroupCount = GetNumber;
+                }
+                else
+                {
+                    InputGroupCount.Text = CurrentSettings.GroupCount.ToString();
+                }
 
                 Debug.WriteLine($"©â¥X²Õ¼Æ: {CurrentSettings.GroupCount}");
             };
