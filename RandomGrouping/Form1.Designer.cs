@@ -28,13 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            SeatsLayoutPanel = new FlowLayoutPanel();
             SuspendLayout();
+            // 
+            // SeatsLayoutPanel
+            // 
+            SeatsLayoutPanel.AutoScroll = true;
+            SeatsLayoutPanel.FlowDirection = FlowDirection.TopDown;
+            SeatsLayoutPanel.Location = new Point(12, 12);
+            SeatsLayoutPanel.Name = "SeatsLayoutPanel";
+            SeatsLayoutPanel.Size = new Size(215, 360);
+            SeatsLayoutPanel.TabIndex = 2;
+            SeatsLayoutPanel.WrapContents = false;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(14F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(924, 629);
+            Controls.Add(SeatsLayoutPanel);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "MainForm";
             Text = "值日生隨機分組";
@@ -43,5 +55,6 @@
         }
 
         #endregion
+        private FlowLayoutPanel SeatsLayoutPanel;
     }
 }
