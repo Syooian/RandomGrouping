@@ -1,6 +1,6 @@
 ﻿namespace RandomGrouping
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,13 +30,14 @@
         {
             SuspendLayout();
             // 
-            // Form1
+            // MainForm
             // 
             AutoScaleDimensions = new SizeF(14F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Name = "Form1";
-            Text = "Form1";
+            ClientSize = new Size(924, 629);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Name = "MainForm";
+            Text = "值日生隨機分組";
             Load += Form1_Load;
             ResumeLayout(false);
         }
